@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   resultScreen: {
-    color: "white"
-  }
+    color: "pink",
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -147,9 +147,9 @@ export default function FullScreenDialog(props) {
     setShowResult(false);
     setDistance(0);
     setCurrentRound(0);
-    setPoints(0)
-    setGameFinished(false)
-    props.clearPositions()
+    setPoints(0);
+    setGameFinished(false);
+    props.clearPositions();
   };
 
   return (
@@ -163,16 +163,25 @@ export default function FullScreenDialog(props) {
             </Typography>
             <Button
               onClick={newGame}
-              style={{ width: "30vw", fontSize: "1.2rem", marginRight: "1.5rem" }}
+              style={{
+                width: "30vw",
+                fontSize: "1.2rem",
+                marginRight: "1.5rem",
+              }}
               variant="contained"
               color="primary"
-            >Play again</Button>
+            >
+              Play again
+            </Button>
           </Backdrop>
         </div>
       ) : (
         <div>
           <Button
-            style={{ width: "30vw", fontSize: "1.2rem" }}
+            style={{
+              width: "30vw",
+              fontSize: "1.2rem",
+            }}
             variant="contained"
             color="primary"
             onClick={handleClickOpen}
@@ -245,10 +254,26 @@ export default function FullScreenDialog(props) {
                 });
               }}
             >
-              <Marker position={guessMarker}></Marker>
+              <Marker
+                position={guessMarker}
+                icon={{
+                  url: "/guess.svg",
+                  scaledSize: new window.google.maps.Size(30, 30),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                }}
+                title={"Your guess"}
+              ></Marker>
               <Marker
                 position={currentPositionMarker}
                 visible={showResult}
+                icon={{
+                  url: "/correct.svg",
+                  scaledSize: new window.google.maps.Size(30, 30),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                }}
+                title={"Correct answer"}
               ></Marker>
               {showResult ? (
                 <Polyline
