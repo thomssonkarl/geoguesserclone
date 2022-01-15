@@ -100,10 +100,18 @@ export default function FullScreenDialog(props) {
 
   const givePoints = (distance) => {
     let maxDistance = 100;
+    let result;
     if (distance > maxDistance) return 0;
-    let result = 50 * Math.floor(maxDistance - distance);
-    setPoints(points + result);
-    return result;
+    if (maxDistance - distance < 1000) {
+      result = 5000;
+      setPoints(points+result);
+      return result;
+    } 
+    else {
+      result = 50 * Math.floor(maxDistance - distance);
+      setPoints(points + result);
+      return result;
+    }
   };
 
   const handleGuess = () => {
@@ -159,7 +167,7 @@ export default function FullScreenDialog(props) {
           <Backdrop open={true} className={classes.resultScreen}>
             <Typography variant="h3" className={classes.title}>
               {" "}
-              Game finished! You got {points}/20000 points!{" "}
+              Game finished! You got {points}/25000 points!{" "}
             </Typography>
             <Button
               onClick={newGame}
