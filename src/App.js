@@ -52,9 +52,11 @@ function App() {
     updatePosition()
   }, []);
 
+  
+
   return (
     <div className="App">
-      <LoadScript googleMapsApiKey="AIzaSyBq_jflBkiQcBPPY4gW9rC2siJ8V-xAmzM">
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap
           options={{ disableDefaultUI: true }}
           mapContainerStyle={mapContainerStyle}
